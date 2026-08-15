@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aung Pyae Phyoe — Full-Stack Developer</title>
+    <meta name="description" content="I build fast, modern and interactive web experiences that don&#039;t just look good — they feel alive.">
+
+    <!-- Theme init (before paint to avoid flash) -->
+    <script>
+        (function () {
+            var t = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS (Play CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        base: '#070710',
+                        neon: '#22d3ee',
+                        neon2: '#a855f7',
+                        neon3: '#f472b6',
+                    },
+                    boxShadow: {
+                        'neon': '0 0 40px rgba(34,211,238,.35)',
+                        'neon-violet': '0 0 40px rgba(168,85,247,.35)',
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- AOS Scroll Animations -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="bg-base text-slate-200 font-body overflow-x-hidden">
+
+    <!-- Scroll progress bar -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] z-[60] pointer-events-none" style="width:0%; background:linear-gradient(90deg,#22d3ee,#a855f7,#f472b6); box-shadow:0 0 12px rgba(34,211,238,.6);"></div>
+
+    <!-- Ambient background orbs -->
+    <div class="fixed inset-0 -z-10 pointer-events-none" aria-hidden="true">
+        <div class="orb orb-cyan"></div>
+        <div class="orb orb-violet"></div>
+        <div class="orb orb-pink"></div>
+        <div class="grid-overlay"></div>
+        <canvas id="particles"></canvas>
+    </div>
+
+    <!-- Navbar -->
+    <header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-500">
+        <nav class="max-w-6xl mx-auto px-6">
+            <div class="flex items-center justify-between h-16">
+                <a href="#home" class="font-display text-xl font-bold tracking-tight group">
+                    <span class="text-white">APP.portfolio</span>
+                </a>
+
+                <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
+                                            <li>
+                            <a href="#home"
+                               class="nav-link relative text-slate-300 hover:text-white transition-colors duration-300">
+                                Home                            </a>
+                        </li>
+                                            <li>
+                            <a href="#skills"
+                               class="nav-link relative text-slate-300 hover:text-white transition-colors duration-300">
+                                Skills                            </a>
+                        </li>
+                                            <li>
+                            <a href="#projects"
+                               class="nav-link relative text-slate-300 hover:text-white transition-colors duration-300">
+                                Projects                            </a>
+                        </li>
+                                            <li>
+                            <a href="#contact"
+                               class="nav-link relative text-slate-300 hover:text-white transition-colors duration-300">
+                                Contact                            </a>
+                        </li>
+                                        <li>
+                        <a href="#contact"
+                           class="btn-glow px-5 py-2 rounded-full text-sm font-semibold">
+                            Hire Me
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="flex items-center gap-3">
+                    <button id="theme-toggle" aria-label="Toggle theme"
+                            class="w-9 h-9 rounded-full glass flex items-center justify-center text-slate-300 hover:text-cyan-300 transition-colors duration-300">
+                        <i class="fa-solid fa-moon" id="theme-icon"></i>
+                    </button>
+                    <button id="menu-toggle" class="md:hidden text-2xl text-white" aria-label="Toggle menu">
+                        <i class="fa-solid fa-bars" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="md:hidden hidden">
+                <ul class="glass rounded-2xl p-6 mb-4 flex flex-col gap-4 text-sm font-medium">
+                                            <li>
+                            <a href="#home" class="mobile-link block text-slate-200 hover:text-cyan-300 transition-colors">
+                                Home                            </a>
+                        </li>
+                                            <li>
+                            <a href="#skills" class="mobile-link block text-slate-200 hover:text-cyan-300 transition-colors">
+                                Skills                            </a>
+                        </li>
+                                            <li>
+                            <a href="#projects" class="mobile-link block text-slate-200 hover:text-cyan-300 transition-colors">
+                                Projects                            </a>
+                        </li>
+                                            <li>
+                            <a href="#contact" class="mobile-link block text-slate-200 hover:text-cyan-300 transition-colors">
+                                Contact                            </a>
+                        </li>
+                                        <li>
+                        <a href="#contact" class="btn-glow inline-block px-5 py-2 rounded-full text-sm font-semibold">Hire Me</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+<section id="home" class="relative min-h-screen flex items-center justify-center pt-16">
+    <div class="max-w-6xl mx-auto px-6 w-full text-center relative z-10">
+
+        <div data-aos="zoom-in" data-aos-delay="100">
+            <span class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-xs font-medium tracking-wider text-cyan-300">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Available for freelance work
+            </span>
+        </div>
+
+        <h1 class="mt-8 font-display font-bold leading-tight text-5xl sm:text-6xl lg:text-7xl text-white" data-aos="fade-up" data-aos-delay="200">
+            Hi, I'm
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-pink-400 hero-gradient">
+                Aung Pyae Phyoe            </span>
+        </h1>
+
+        <div class="mt-5 flex items-center justify-center gap-3 flex-wrap font-display text-xl sm:text-2xl lg:text-3xl text-slate-300" data-aos="fade-up" data-aos-delay="300">
+            <span>I'm a</span>
+            <span id="typed" class="font-semibold text-cyan-300" data-roles='["Full-Stack Developer","PHP Engineer","UI\/UX Enthusiast","Problem Solver"]'></span>
+            <span id="cursor" class="animate-blink text-cyan-400">|</span>
+        </div>
+
+        <p class="mt-6 max-w-2xl mx-auto text-slate-400 text-base sm:text-lg leading-relaxed" data-aos="fade-up" data-aos-delay="400">
+            I build fast, modern and interactive web experiences that don&#039;t just look good — they feel alive.        </p>
+
+        <div class="mt-10 flex items-center justify-center gap-4 flex-wrap" data-aos="fade-up" data-aos-delay="500">
+            <a href="#projects" class="btn-glow px-7 py-3 rounded-full font-semibold text-sm">
+                <i class="fa-solid fa-rocket mr-2"></i>View Projects
+            </a>
+            <a href="#contact" class="btn-ghost px-7 py-3 rounded-full font-semibold text-sm">
+                <i class="fa-solid fa-envelope mr-2"></i>Get In Touch
+            </a>
+        </div>
+
+        <div class="mt-14 flex items-center justify-center gap-5" data-aos="fade-up" data-aos-delay="600">
+                            <a href="https://github.com/DeeLiso" target="_blank" rel="noopener"
+                   class="social-btn glass w-11 h-11 rounded-full flex items-center justify-center text-slate-300 hover:text-cyan-300 transition-all duration-300"
+                   aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                            <a href="mailto:tmaxoffice12@gmail.com" target="_blank" rel="noopener"
+                   class="social-btn glass w-11 h-11 rounded-full flex items-center justify-center text-slate-300 hover:text-cyan-300 transition-all duration-300"
+                   aria-label="Email">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                    </div>
+
+        <!-- Scroll indicator -->
+        <a href="#skills" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 hover:text-cyan-300 transition-colors scroll-indicator" aria-label="Scroll down">
+            <i class="fa-solid fa-chevron-down text-xl animate-bounce"></i>
+        </a>
+    </div>
+</section>
+<section id="skills" class="relative py-24">
+    <div class="max-w-6xl mx-auto px-6">
+
+        <div class="text-center" data-aos="fade-up">
+            <p class="section-tag">What I Bring</p>
+            <h2 class="section-title">Skills & <span class="gradient-text">Expertise</span></h2>
+        </div>
+
+        <div class="mt-14 grid lg:grid-cols-2 gap-10 items-start">
+            <!-- Animated progress bars -->
+            <div class="glass rounded-3xl p-8" data-aos="fade-right">
+                <h3 class="font-display text-lg font-semibold text-white mb-7 flex items-center gap-2">
+                    <i class="fa-solid fa-gauge-high text-cyan-400"></i> Proficiency
+                </h3>
+
+                <div class="space-y-7">
+                                            <div data-aos="fade-up" data-aos-delay="0">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="flex items-center gap-2.5 text-sm font-medium text-slate-200">
+                                    <i class="fa-brands fa-html5 w-4 text-center text-slate-400"></i>
+                                    HTML                                </span>
+                                <span class="text-xs font-semibold text-slate-400">
+                                    <span class="counter" data-target="95">0</span>%
+                                </span>
+                            </div>
+                            <div class="h-2.5 rounded-full bg-white/5 overflow-hidden skill-track">
+                                <div class="skill-bar h-full rounded-full bg-gradient-to-r from-orange-400 to-red-500"
+                                     style="width: 0%" data-width="95"></div>
+                            </div>
+                        </div>
+                                            <div data-aos="fade-up" data-aos-delay="100">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="flex items-center gap-2.5 text-sm font-medium text-slate-200">
+                                    <i class="fa-solid fa-wind w-4 text-center text-slate-400"></i>
+                                    Tailwind CSS                                </span>
+                                <span class="text-xs font-semibold text-slate-400">
+                                    <span class="counter" data-target="90">0</span>%
+                                </span>
+                            </div>
+                            <div class="h-2.5 rounded-full bg-white/5 overflow-hidden skill-track">
+                                <div class="skill-bar h-full rounded-full bg-gradient-to-r from-cyan-400 to-blue-500"
+                                     style="width: 0%" data-width="90"></div>
+                            </div>
+                        </div>
+                                            <div data-aos="fade-up" data-aos-delay="200">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="flex items-center gap-2.5 text-sm font-medium text-slate-200">
+                                    <i class="fa-brands fa-js w-4 text-center text-slate-400"></i>
+                                    JavaScript                                </span>
+                                <span class="text-xs font-semibold text-slate-400">
+                                    <span class="counter" data-target="85">0</span>%
+                                </span>
+                            </div>
+                            <div class="h-2.5 rounded-full bg-white/5 overflow-hidden skill-track">
+                                <div class="skill-bar h-full rounded-full bg-gradient-to-r from-yellow-300 to-amber-500"
+                                     style="width: 0%" data-width="85"></div>
+                            </div>
+                        </div>
+                                            <div data-aos="fade-up" data-aos-delay="300">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="flex items-center gap-2.5 text-sm font-medium text-slate-200">
+                                    <i class="fa-brands fa-php w-4 text-center text-slate-400"></i>
+                                    PHP                                </span>
+                                <span class="text-xs font-semibold text-slate-400">
+                                    <span class="counter" data-target="92">0</span>%
+                                </span>
+                            </div>
+                            <div class="h-2.5 rounded-full bg-white/5 overflow-hidden skill-track">
+                                <div class="skill-bar h-full rounded-full bg-gradient-to-r from-indigo-400 to-violet-500"
+                                     style="width: 0%" data-width="92"></div>
+                            </div>
+                        </div>
+                                            <div data-aos="fade-up" data-aos-delay="400">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="flex items-center gap-2.5 text-sm font-medium text-slate-200">
+                                    <i class="fa-brands fa-python w-4 text-center text-slate-400"></i>
+                                    Python                                </span>
+                                <span class="text-xs font-semibold text-slate-400">
+                                    <span class="counter" data-target="75">0</span>%
+                                </span>
+                            </div>
+                            <div class="h-2.5 rounded-full bg-white/5 overflow-hidden skill-track">
+                                <div class="skill-bar h-full rounded-full bg-gradient-to-r from-emerald-400 to-teal-500"
+                                     style="width: 0%" data-width="75"></div>
+                            </div>
+                        </div>
+                                    </div>
+            </div>
+
+            <!-- Floating badge cloud -->
+            <div class="relative flex items-center justify-center min-h-[380px]" data-aos="fade-left">
+                <div class="glass rounded-3xl p-6 w-full min-h-[380px] flex flex-col items-center justify-center">
+                    <div class="text-center mb-6">
+                        <i class="fa-solid fa-layer-group text-3xl text-cyan-400"></i>
+                        <h3 class="font-display text-lg font-semibold text-white mt-3">Floating Tech Stack</h3>
+                        <p class="text-xs text-slate-500 mt-1">Badges drift & spin on hover</p>
+                    </div>
+
+                    <div class="badge-cloud flex flex-wrap justify-center gap-4">
+                                                    <span class="badge glass px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2"
+                                  style="--delay: 6s; --x: 22px;">
+                                <i class="fa-brands fa-html5 text-cyan-300"></i>
+                                HTML                            </span>
+                                                    <span class="badge glass px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2"
+                                  style="--delay: 4s; --x: 21px;">
+                                <i class="fa-solid fa-wind text-cyan-300"></i>
+                                Tailwind CSS                            </span>
+                                                    <span class="badge glass px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2"
+                                  style="--delay: 6s; --x: 12px;">
+                                <i class="fa-brands fa-js text-cyan-300"></i>
+                                JavaScript                            </span>
+                                                    <span class="badge glass px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2"
+                                  style="--delay: 7s; --x: 23px;">
+                                <i class="fa-brands fa-php text-cyan-300"></i>
+                                PHP                            </span>
+                                                    <span class="badge glass px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2"
+                                  style="--delay: 8s; --x: -22px;">
+                                <i class="fa-brands fa-python text-cyan-300"></i>
+                                Python                            </span>
+                                                <span class="badge glass px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2"
+                              style="--delay: 2s; --x: 12px;">
+                            <i class="fa-brands fa-git-alt text-pink-400"></i> Git
+                        </span>
+                        <span class="badge glass px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2"
+                              style="--delay: 5s; --x: -20px;">
+                            <i class="fa-solid fa-database text-emerald-400"></i> MySQL
+                        </span>
+                        <span class="badge glass px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2"
+                              style="--delay: 7s; --x: 24px;">
+                            <i class="fa-brands fa-bootstrap text-violet-400"></i> Bootstrap
+                        </span>
+                        <span class="badge glass px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2"
+                              style="--delay: 3.5s; --x: -14px;">
+                            <i class="fa-brands fa-node-js text-emerald-400"></i> WebSockets
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="projects" class="relative py-24">
+    <div class="max-w-6xl mx-auto px-6">
+
+        <div class="text-center" data-aos="fade-up">
+            <p class="section-tag">Recent Work</p>
+            <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+            <p class="mt-4 text-sky-300 max-w-xl mx-auto text-sm sm:text-base">
+                Hover a card to feel the depth — built with real-world tools for real-world problems.
+            </p>
+        </div>
+
+        <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <article data-aos="fade-up" data-aos-delay="0"
+                         class="tilt-card group relative rounded-3xl overflow-hidden glass project-card featured">
+
+                    <!-- Top gradient border glow -->
+                    <div class="card-glow"></div>
+
+                    <!-- Image -->
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="assets/img/projects/luxury-car.jpg"
+                             alt="AngelPanda – Premium Auto Parts Store"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                             loading="lazy"
+                             onerror="this.style.display='none'; this.parentElement.classList.add('img-fallback');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-base via-base/40 to-transparent"></div>
+
+                        <span class="absolute top-3 left-3 glass rounded-full px-3 py-1 text-[11px] font-semibold text-cyan-300">
+                            2026                        </span>
+
+                                                    <span class="absolute top-3 right-3 glass rounded-full px-3 py-1 text-[11px] font-semibold text-fuchsia-300">
+                                <i class="fa-solid fa-star mr-1"></i>Featured
+                            </span>
+                                            </div>
+
+                    <!-- Body -->
+                    <div class="p-6 relative z-10">
+                        <h3 class="font-display text-lg font-semibold text-white transition-colors duration-300 group-hover:text-cyan-300">
+                            AngelPanda – Premium Auto Parts Store                        </h3>
+
+                        <div class="mt-3 flex flex-wrap gap-2">
+                                                            <span class="chip">PHP</span>
+                                                            <span class="chip">MySQL</span>
+                                                            <span class="chip">JavaScript</span>
+                                                            <span class="chip">Bootstrap</span>
+                                                    </div>
+
+                        <p class="mt-4 text-sm text-slate-400 leading-relaxed line-clamp-3">
+                            A full PHP + MySQL e-commerce website for selling auto parts, featuring shop + category filter, user login/registration, product ratings, EN/Myanmar language switch, dark mode and a complete admin CMS.                        </p>
+
+                        <div class="mt-5 flex items-center gap-3">
+                            <a href="#" target="_blank" rel="noopener"
+                               class="demo-trigger inline-flex items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
+                               data-url="#"
+                               data-title="AngelPanda – Premium Auto Parts Store"
+                               data-github="https://github.com/DeeLiso/luxury_car_sell">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                            </a>
+                                                            <a href="https://github.com/DeeLiso/luxury_car_sell" target="_blank" rel="noopener"
+                                   class="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+                                    <i class="fa-brands fa-github"></i> Code
+                                </a>
+                                                    </div>
+                    </div>
+                </article>
+                            <article data-aos="fade-up" data-aos-delay="120"
+                         class="tilt-card group relative rounded-3xl overflow-hidden glass project-card ">
+
+                    <!-- Top gradient border glow -->
+                    <div class="card-glow"></div>
+
+                    <!-- Image -->
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="assets/img/projects/card-effects.jpg"
+                             alt="Card Design Effects"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                             loading="lazy"
+                             onerror="this.style.display='none'; this.parentElement.classList.add('img-fallback');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-base via-base/40 to-transparent"></div>
+
+                        <span class="absolute top-3 left-3 glass rounded-full px-3 py-1 text-[11px] font-semibold text-cyan-300">
+                            2026                        </span>
+
+                                            </div>
+
+                    <!-- Body -->
+                    <div class="p-6 relative z-10">
+                        <h3 class="font-display text-lg font-semibold text-white transition-colors duration-300 group-hover:text-cyan-300">
+                            Card Design Effects                        </h3>
+
+                        <div class="mt-3 flex flex-wrap gap-2">
+                                                            <span class="chip">HTML</span>
+                                                            <span class="chip">CSS</span>
+                                                            <span class="chip">JavaScript</span>
+                                                    </div>
+
+                        <p class="mt-4 text-sm text-slate-400 leading-relaxed line-clamp-3">
+                            A curated CSS collection of card design effects — Aurora mesh gradients, Claymorphism, Cyberpunk Glitch, Glassmorphism and Neumorphism — each with its own demo.                        </p>
+
+                        <div class="mt-5 flex items-center gap-3">
+                            <a href="#" target="_blank" rel="noopener"
+                               class="demo-trigger inline-flex items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
+                               data-url="#"
+                               data-title="Card Design Effects"
+                               data-github="https://github.com/DeeLiso/Card-Design-Effects">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                            </a>
+                                                            <a href="https://github.com/DeeLiso/Card-Design-Effects" target="_blank" rel="noopener"
+                                   class="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+                                    <i class="fa-brands fa-github"></i> Code
+                                </a>
+                                                    </div>
+                    </div>
+                </article>
+                            <article data-aos="fade-up" data-aos-delay="240"
+                         class="tilt-card group relative rounded-3xl overflow-hidden glass project-card ">
+
+                    <!-- Top gradient border glow -->
+                    <div class="card-glow"></div>
+
+                    <!-- Image -->
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="assets/img/projects/pos-helper.jpg"
+                             alt="2D Parser Engine"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                             loading="lazy"
+                             onerror="this.style.display='none'; this.parentElement.classList.add('img-fallback');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-base via-base/40 to-transparent"></div>
+
+                        <span class="absolute top-3 left-3 glass rounded-full px-3 py-1 text-[11px] font-semibold text-cyan-300">
+                            2026                        </span>
+
+                                            </div>
+
+                    <!-- Body -->
+                    <div class="p-6 relative z-10">
+                        <h3 class="font-display text-lg font-semibold text-white transition-colors duration-300 group-hover:text-cyan-300">
+                            2D Parser Engine                        </h3>
+
+                        <div class="mt-3 flex flex-wrap gap-2">
+                                                            <span class="chip">Python</span>
+                                                            <span class="chip">Django</span>
+                                                            <span class="chip">JSON</span>
+                                                            <span class="chip">API</span>
+                                                    </div>
+
+                        <p class="mt-4 text-sm text-slate-400 leading-relaxed line-clamp-3">
+                            A Django-powered parsing engine for 2D result data — ingests raw input, validates and processes it, then exposes clean JSON APIs for the front-end apps to consume.                        </p>
+
+                        <div class="mt-5 flex items-center gap-3">
+                            <a href="#" target="_blank" rel="noopener"
+                               class="demo-trigger inline-flex items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
+                               data-url="#"
+                               data-title="2D Parser Engine"
+                               data-github="https://github.com/DeeLiso/2d-parser-engine">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                            </a>
+                                                            <a href="https://github.com/DeeLiso/2d-parser-engine" target="_blank" rel="noopener"
+                                   class="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+                                    <i class="fa-brands fa-github"></i> Code
+                                </a>
+                                                    </div>
+                    </div>
+                </article>
+                            <article data-aos="fade-up" data-aos-delay="0"
+                         class="tilt-card group relative rounded-3xl overflow-hidden glass project-card featured">
+
+                    <!-- Top gradient border glow -->
+                    <div class="card-glow"></div>
+
+                    <!-- Image -->
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="assets/img/projects/admin-dashboard.jpg"
+                             alt="T-MAX-OS Admin Dashboard"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                             loading="lazy"
+                             onerror="this.style.display='none'; this.parentElement.classList.add('img-fallback');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-base via-base/40 to-transparent"></div>
+
+                        <span class="absolute top-3 left-3 glass rounded-full px-3 py-1 text-[11px] font-semibold text-cyan-300">
+                            2026                        </span>
+
+                                                    <span class="absolute top-3 right-3 glass rounded-full px-3 py-1 text-[11px] font-semibold text-fuchsia-300">
+                                <i class="fa-solid fa-star mr-1"></i>Featured
+                            </span>
+                                            </div>
+
+                    <!-- Body -->
+                    <div class="p-6 relative z-10">
+                        <h3 class="font-display text-lg font-semibold text-white transition-colors duration-300 group-hover:text-cyan-300">
+                            T-MAX-OS Admin Dashboard                        </h3>
+
+                        <div class="mt-3 flex flex-wrap gap-2">
+                                                            <span class="chip">PHP</span>
+                                                            <span class="chip">MySQL</span>
+                                                            <span class="chip">JavaScript</span>
+                                                            <span class="chip">Bootstrap</span>
+                                                    </div>
+
+                        <p class="mt-4 text-sm text-slate-400 leading-relaxed line-clamp-3">
+                            A PHP admin system with login/authentication, dashboard views and product management — hosted live on Vercel with a deploy workflow baked in.                        </p>
+
+                        <div class="mt-5 flex items-center gap-3">
+                            <a href="https://t-max-os.vercel.app" target="_blank" rel="noopener"
+                               class="demo-trigger inline-flex items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
+                               data-url="https://t-max-os.vercel.app"
+                               data-title="T-MAX-OS Admin Dashboard"
+                               data-github="https://github.com/DeeLiso/t_max_os">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                            </a>
+                                                            <a href="https://github.com/DeeLiso/t_max_os" target="_blank" rel="noopener"
+                                   class="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+                                    <i class="fa-brands fa-github"></i> Code
+                                </a>
+                                                    </div>
+                    </div>
+                </article>
+                            <article data-aos="fade-up" data-aos-delay="120"
+                         class="tilt-card group relative rounded-3xl overflow-hidden glass project-card ">
+
+                    <!-- Top gradient border glow -->
+                    <div class="card-glow"></div>
+
+                    <!-- Image -->
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="assets/img/projects/ws-app.jpg"
+                             alt="TMAX Space 3D"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                             loading="lazy"
+                             onerror="this.style.display='none'; this.parentElement.classList.add('img-fallback');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-base via-base/40 to-transparent"></div>
+
+                        <span class="absolute top-3 left-3 glass rounded-full px-3 py-1 text-[11px] font-semibold text-cyan-300">
+                            2026                        </span>
+
+                                            </div>
+
+                    <!-- Body -->
+                    <div class="p-6 relative z-10">
+                        <h3 class="font-display text-lg font-semibold text-white transition-colors duration-300 group-hover:text-cyan-300">
+                            TMAX Space 3D                        </h3>
+
+                        <div class="mt-3 flex flex-wrap gap-2">
+                                                            <span class="chip">HTML</span>
+                                                            <span class="chip">CSS</span>
+                                                            <span class="chip">JavaScript</span>
+                                                    </div>
+
+                        <p class="mt-4 text-sm text-slate-400 leading-relaxed line-clamp-3">
+                            A pure front-end 3D space experience — a floating, animated 3D logo built with CSS transforms and a lightweight JavaScript animation engine.                        </p>
+
+                        <div class="mt-5 flex items-center gap-3">
+                            <a href="https://tmax-space-3d.vercel.app" target="_blank" rel="noopener"
+                               class="demo-trigger inline-flex items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
+                               data-url="https://tmax-space-3d.vercel.app"
+                               data-title="TMAX Space 3D"
+                               data-github="https://github.com/DeeLiso/tmax-space-3d">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                            </a>
+                                                            <a href="https://github.com/DeeLiso/tmax-space-3d" target="_blank" rel="noopener"
+                                   class="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+                                    <i class="fa-brands fa-github"></i> Code
+                                </a>
+                                                    </div>
+                    </div>
+                </article>
+                            <article data-aos="fade-up" data-aos-delay="240"
+                         class="tilt-card group relative rounded-3xl overflow-hidden glass project-card ">
+
+                    <!-- Top gradient border glow -->
+                    <div class="card-glow"></div>
+
+                    <!-- Image -->
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="assets/img/projects/wifi-monitor.jpg"
+                             alt="TMAX D2"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                             loading="lazy"
+                             onerror="this.style.display='none'; this.parentElement.classList.add('img-fallback');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-base via-base/40 to-transparent"></div>
+
+                        <span class="absolute top-3 left-3 glass rounded-full px-3 py-1 text-[11px] font-semibold text-cyan-300">
+                            2026                        </span>
+
+                                            </div>
+
+                    <!-- Body -->
+                    <div class="p-6 relative z-10">
+                        <h3 class="font-display text-lg font-semibold text-white transition-colors duration-300 group-hover:text-cyan-300">
+                            TMAX D2                        </h3>
+
+                        <div class="mt-3 flex flex-wrap gap-2">
+                                                            <span class="chip">HTML</span>
+                                                            <span class="chip">CSS</span>
+                                                            <span class="chip">JavaScript</span>
+                                                    </div>
+
+                        <p class="mt-4 text-sm text-slate-400 leading-relaxed line-clamp-3">
+                            A fast, lightweight landing page built with clean semantic HTML and custom CSS — simple, responsive and deployed live on Vercel.                        </p>
+
+                        <div class="mt-5 flex items-center gap-3">
+                            <a href="https://tmaxd2.vercel.app" target="_blank" rel="noopener"
+                               class="demo-trigger inline-flex items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
+                               data-url="https://tmaxd2.vercel.app"
+                               data-title="TMAX D2"
+                               data-github="https://github.com/DeeLiso/tmaxd2">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                            </a>
+                                                            <a href="https://github.com/DeeLiso/tmaxd2" target="_blank" rel="noopener"
+                                   class="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-white transition-colors">
+                                    <i class="fa-brands fa-github"></i> Code
+                                </a>
+                                                    </div>
+                    </div>
+                </article>
+                    </div>
+
+        <div class="mt-12 text-center" data-aos="fade-up">
+            <a href="https://github.com/DeeLiso" target="_blank" rel="noopener" class="btn-ghost px-7 py-3 rounded-full font-semibold text-sm">
+                <i class="fa-brands fa-github mr-2"></i>See More on GitHub
+            </a>
+        </div>
+    </div>
+</section>
+<section id="contact" class="relative py-24">
+    <div class="max-w-6xl mx-auto px-6">
+
+        <div class="text-center" data-aos="fade-up">
+            <p class="section-tag">Let's Talk</p>
+            <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
+        </div>
+
+        <div class="mt-14 grid lg:grid-cols-2 gap-10 items-start">
+
+            <!-- Info panel -->
+            <div class="glass rounded-3xl p-8" data-aos="fade-right">
+                <h3 class="font-display text-xl font-semibold text-white">Let's build something great together</h3>
+                <p class="mt-3 text-sm text-slate-400 leading-relaxed">
+                    Have a project in mind, a role to fill, or just want to say hi?
+                    My inbox is always open — I usually reply within 24 hours.
+                </p>
+
+                <ul class="mt-8 space-y-5">
+                    <li class="flex items-center gap-4">
+                        <span class="glass w-11 h-11 rounded-xl flex items-center justify-center text-cyan-400">
+                            <i class="fa-solid fa-envelope"></i>
+                        </span>
+                        <div>
+                            <p class="text-xs text-slate-500 uppercase tracking-wider">Email</p>
+                            <a href="mailto:tmaxoffice12@gmail.com" class="text-sm text-slate-200 hover:text-cyan-300 transition-colors">
+                                tmaxoffice12@gmail.com                            </a>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <span class="glass w-11 h-11 rounded-xl flex items-center justify-center text-violet-400">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </span>
+                        <div>
+                            <p class="text-xs text-slate-500 uppercase tracking-wider">Location</p>
+                            <p class="text-sm text-slate-200">Myanmar</p>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <span class="glass w-11 h-11 rounded-xl flex items-center justify-center text-pink-400">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </span>
+                        <div>
+                            <p class="text-xs text-slate-500 uppercase tracking-wider">Status</p>
+                            <p class="text-sm text-emerald-400 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Open to work
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Form panel -->
+            <div class="glass rounded-3xl p-8" data-aos="fade-left">
+                
+                <form action="send_contact.php" method="POST" class="space-y-6" novalidate>
+                    <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="field">
+                            <input type="text" name="name" id="name" placeholder=" " required
+                                   class="field-input">
+                            <label for="name" class="field-label">Your Name</label>
+                        </div>
+                        <div class="field">
+                            <input type="email" name="email" id="email" placeholder=" " required
+                                   class="field-input">
+                            <label for="email" class="field-label">Your Email</label>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <input type="text" name="subject" id="subject" placeholder=" " required
+                               class="field-input">
+                        <label for="subject" class="field-label">Subject</label>
+                    </div>
+
+                    <div class="field">
+                        <textarea name="message" id="message" rows="5" placeholder=" " required
+                                  class="field-input resize-none"></textarea>
+                        <label for="message" class="field-label">Your Message</label>
+                    </div>
+
+                    <button type="submit" class="btn-glow w-full py-3.5 rounded-full font-semibold text-sm">
+                        <i class="fa-solid fa-paper-plane mr-2"></i>Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 mt-10">
+        <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-slate-500">
+                © <span id="year"></span> Aung Pyae Phyoe. Crafted with
+                <span class="text-pink-500">♥</span> using PHP + Tailwind.
+                <i class="fa-brands fa-windows text-slate-400 ml-2"></i>
+            </p>
+
+            <button id="to-top" aria-label="Back to top"
+                    class="glass w-11 h-11 rounded-full flex items-center justify-center text-slate-300 hover:text-cyan-300 hover:-translate-y-1 transition-all duration-300">
+                <i class="fa-solid fa-arrow-up"></i>
+            </button>
+        </div>
+    </footer>
+
+    <!-- Floating feedback card (slides in from the side) -->
+    <div id="float-card" class="float-card fixed bottom-6 right-6 z-40 max-w-sm w-[calc(100vw-3rem)] sm:w-80 glass rounded-2xl p-5">
+        <button id="float-close" aria-label="Dismiss"
+                class="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-white transition-colors">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="flex items-start gap-3">
+            <span class="glass w-10 h-10 rounded-xl flex items-center justify-center text-cyan-300 shrink-0">
+                <i class="fa-solid fa-comment-dots"></i>
+            </span>
+            <div>
+                <h4 class="font-display font-semibold text-white text-sm">Quick Question</h4>
+                <p class="mt-1.5 text-sm text-slate-300 leading-relaxed">
+                    How likely are you to recommend APP.portfolio to a friend?
+                </p>
+            </div>
+        </div>
+        <div class="mt-4 flex gap-2">
+            <button class="btn-glow px-4 py-2 rounded-full text-xs font-semibold">Reply</button>
+            <button id="float-later" class="btn-ghost px-4 py-2 rounded-full text-xs font-semibold">Later</button>
+        </div>
+    </div>
+
+    <!-- Live Demo preview modal -->
+    <div id="demo-modal" class="fixed inset-0 z-[70] hidden items-center justify-center p-4" role="dialog" aria-modal="true">
+        <div id="demo-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+        <div class="relative w-full max-w-5xl h-[85vh] glass rounded-2xl overflow-hidden flex flex-col">
+            <div class="flex items-center justify-between gap-3 px-4 py-3 border-b border-white/10">
+                <div class="flex items-center gap-2.5 min-w-0">
+                    <i class="fa-solid fa-globe text-cyan-400"></i>
+                    <span id="demo-title" class="font-display font-semibold text-white text-sm truncate">Project</span>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <button id="demo-reload" title="Reload" aria-label="Reload"
+                            class="w-9 h-9 rounded-full glass flex items-center justify-center text-slate-300 hover:text-white transition-colors">
+                        <i class="fa-solid fa-rotate"></i>
+                    </button>
+                    <a id="demo-open" href="#" target="_blank" rel="noopener"
+                       class="btn-glow px-4 py-2 rounded-full text-xs font-semibold">
+                        <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>Visit Site
+                    </a>
+                    <button id="demo-close" title="Close" aria-label="Close"
+                            class="w-9 h-9 rounded-full glass flex items-center justify-center text-slate-300 hover:text-red-400 transition-colors">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="relative flex-1 bg-white">
+                <iframe id="demo-frame" src="about:blank" class="w-full h-full" allowfullscreen></iframe>
+                <div id="demo-loader" class="absolute inset-0 flex items-center justify-center" style="background:#0f172a;">
+                    <div class="flex flex-col items-center gap-3">
+                        <i class="fa-solid fa-spinner fa-spin text-2xl text-cyan-400"></i>
+                        <p class="text-xs text-slate-400">Loading preview…</p>
+                    </div>
+                </div>
+                <div id="demo-error" class="absolute inset-0 hidden flex-col items-center justify-center gap-4 p-6 text-center" style="background:#0f172a;">
+                    <img src="assets/img/no-demo.gif" alt="No live demo yet"
+                         class="max-h-64 max-w-full rounded-xl object-contain shadow-2xl">
+                    <p class="text-sm text-slate-300">No live demo yet — check out the source code on GitHub.</p>
+                    <a id="demo-error-open" href="#" target="_blank" rel="noopener"
+                       class="btn-glow px-5 py-2 rounded-full text-xs font-semibold">Open in new tab</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <!-- Anti-copy protection -->
+    <script src="assets/js/anti-copy.js"></script>
+    <!-- Main JS -->
+    <script src="assets/js/main.js"></script>
+    <script>
+    (function () {
+        var f = document.querySelector('#contact form');
+        if (!f) return;
+        f.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var box = document.createElement('div');
+            box.className = 'rounded-xl border border-cyan-500/30 bg-cyan-500/10 p-4 mb-6 text-sm text-cyan-300';
+            box.innerHTML = '<i class="fa-solid fa-circle-info mr-2"></i>This static preview can\'t send messages. Email me at <a class="underline" href="mailto:tmaxoffice12@gmail.com">tmaxoffice12@gmail.com</a>.';
+            f.parentNode.insertBefore(box, f.firstChild);
+            box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    })();
+    </script>
+</body>
+</html>
