@@ -1,0 +1,12 @@
+{
+    "name": "app-portfolio/portfolio",
+    "description": "Personal portfolio with contact form (MySQL + SMTP email)",
+    "type": "project",
+    "require": {
+        "php": ">=8.0",
+        "phpmailer/phpmailer": "^6.9"
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}

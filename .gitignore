@@ -1,0 +1,12 @@
+# Dependencies (reinstall with: composer install)
+/vendor/
+
+# Local config (copy config.example.php -> config.php and fill in your values)
+/config.php
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

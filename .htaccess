@@ -1,0 +1,30 @@
+# ============================================================
+# SECURITY RULES (Apache)
+# Best-effort protection so casual visitors can't read the
+# source or sensitive files directly. Not a replacement for
+# a real security audit.
+# ============================================================
+
+# No directory listing
+Options -Indexes
+
+# --- Block direct access to sensitive files ---
+<FilesMatch "^(config\.php|database\.sql|composer\.json|composer\.lock|\.env|\.htaccess)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# --- Block direct access to PHP partials, data and dependencies ---
+RedirectMatch 403 ^/(includes|data|vendor)(/|$)
+
+# --- Security headers ---
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
