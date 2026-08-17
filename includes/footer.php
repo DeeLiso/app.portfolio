@@ -41,10 +41,10 @@
     </div>
 
     <!-- Live Demo preview modal -->
-    <div id="demo-modal" class="fixed inset-0 z-[70] hidden items-center justify-center p-4" role="dialog" aria-modal="true">
+    <div id="demo-modal" class="fixed inset-0 z-[70] hidden items-center justify-center p-2 sm:p-4" role="dialog" aria-modal="true">
         <div id="demo-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
         <div class="relative w-full max-w-5xl h-[85vh] glass rounded-2xl overflow-hidden flex flex-col">
-            <div class="flex items-center justify-between gap-3 px-4 py-3 border-b border-white/10">
+            <div class="flex items-center justify-between gap-2 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 border-b border-white/10">
                 <div class="flex items-center gap-2.5 min-w-0">
                     <i class="fa-solid fa-globe text-cyan-400"></i>
                     <span id="demo-title" class="font-display font-semibold text-white text-sm truncate">Project</span>
@@ -55,8 +55,8 @@
                         <i class="fa-solid fa-rotate"></i>
                     </button>
                     <a id="demo-open" href="#" target="_blank" rel="noopener"
-                       class="btn-glow px-4 py-2 rounded-full text-xs font-semibold">
-                        <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>Visit Site
+                       class="btn-glow px-3 sm:px-4 py-2 rounded-full text-xs font-semibold">
+                        <i class="fa-solid fa-arrow-up-right-from-square sm:mr-1"></i><span class="hidden sm:inline">Visit Site</span>
                     </a>
                     <button id="demo-close" title="Close" aria-label="Close"
                             class="w-9 h-9 rounded-full glass flex items-center justify-center text-slate-300 hover:text-red-400 transition-colors">

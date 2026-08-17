@@ -45,7 +45,7 @@
     const mobileMenu = document.getElementById('mobile-menu');
     const menuIcon = document.getElementById('menu-icon');
 
-    menuToggle.addEventListener('click', () => {
+    if (menuToggle) menuToggle.addEventListener('click', () => {
         const isOpen = !mobileMenu.classList.contains('hidden');
         mobileMenu.classList.toggle('hidden');
         menuIcon.className = isOpen ? 'fa-solid fa-bars' : 'fa-solid fa-xmark';
@@ -60,7 +60,7 @@
 
     /* ---------- 3. Back to top ---------- */
     const toTop = document.getElementById('to-top');
-    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    if (toTop) toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
     /* ---------- 4. Typing effect ---------- */
     const typedEl = document.getElementById('typed');
@@ -290,7 +290,7 @@
             duration: 800,
             easing: 'ease-out-cubic',
             once: true,
-            offset: 60,
+            offset: window.innerWidth < 640 ? 30 : 60,
         });
     }
 })();

@@ -13,7 +13,7 @@ $mail  = ($_GET['mail'] ?? '') === '1';
             <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
         </div>
 
-        <div class="mt-14 grid lg:grid-cols-2 gap-10 items-start">
+        <div class="mt-14 grid lg:grid-cols-2 gap-8 lg:gap-10 items-start">
 
             <!-- Info panel -->
             <div class="glass rounded-3xl p-8" data-aos="fade-right">
@@ -30,7 +30,7 @@ $mail  = ($_GET['mail'] ?? '') === '1';
                         </span>
                         <div>
                             <p class="text-xs text-slate-500 uppercase tracking-wider">Email</p>
-                            <a href="mailto:<?= htmlspecialchars($profile['email']) ?>" class="text-sm text-slate-200 hover:text-cyan-300 transition-colors">
+                            <a href="mailto:<?= htmlspecialchars($profile['email']) ?>" class="text-sm text-slate-200 hover:text-cyan-300 transition-colors break-all">
                                 <?= htmlspecialchars($profile['email']) ?>
                             </a>
                         </div>

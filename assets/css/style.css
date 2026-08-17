@@ -410,6 +410,26 @@ html[data-theme="light"] ::-webkit-scrollbar-track { background: #f1f5f9; }
 html[data-theme="light"] ::selection,
 html[data-theme="light"] ::-moz-selection { color: #0f172a; }
 
+/* ---------- Mobile responsive overrides ---------- */
+@media (max-width: 640px) {
+    .orb-cyan   { width: 200px; height: 200px; top: -60px; left: -60px; }
+    .orb-violet { width: 240px; height: 240px; top: 30%; right: -80px; }
+    .orb-pink   { width: 180px; height: 180px; bottom: -60px; left: 20%; }
+
+    ::-webkit-scrollbar { width: 4px; }
+
+    .float-card {
+        transform: translateY(calc(100% + 1.5rem));
+        right: 1rem;
+        bottom: 1rem;
+        max-width: 100%;
+        width: calc(100vw - 2rem);
+    }
+    .float-card.show {
+        transform: translateY(0);
+    }
+}
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {

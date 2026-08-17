@@ -10,7 +10,7 @@
             </p>
         </div>
 
-        <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
             <?php foreach ($projects as $index => $project): ?>
                 <article data-aos="fade-up" data-aos-delay="<?= ($index % 3) * 120 ?>"
                          class="tilt-card group relative rounded-3xl overflow-hidden glass project-card <?= !empty($project['featured']) ? 'featured' : '' ?>">

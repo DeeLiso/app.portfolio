@@ -69,7 +69,7 @@ $nav = [
     <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] z-[60] pointer-events-none" style="width:0%; background:linear-gradient(90deg,#22d3ee,#a855f7,#f472b6); box-shadow:0 0 12px rgba(34,211,238,.6);"></div>
 
     <!-- Ambient background orbs -->
-    <div class="fixed inset-0 -z-10 pointer-events-none" aria-hidden="true">
+    <div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden" aria-hidden="true">
         <div class="orb orb-cyan"></div>
         <div class="orb orb-violet"></div>
         <div class="orb orb-pink"></div>

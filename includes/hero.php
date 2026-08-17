@@ -12,7 +12,7 @@ $profile_socials = portfolio_data()['socials'];
             </span>
         </div>
 
-        <h1 class="mt-8 font-display font-bold leading-tight text-5xl sm:text-6xl lg:text-7xl text-white" data-aos="fade-up" data-aos-delay="200">
+        <h1 class="mt-8 font-display font-bold leading-tight text-3xl sm:text-5xl lg:text-7xl text-white" data-aos="fade-up" data-aos-delay="200">
             Hi, I'm
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-pink-400 hero-gradient">
                 <?= htmlspecialchars($profile['name']) ?>
@@ -57,7 +57,7 @@ $profile_socials = portfolio_data()['socials'];
         </div>
 
         <!-- Scroll indicator -->
-        <a href="#skills" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 hover:text-cyan-300 transition-colors scroll-indicator" aria-label="Scroll down">
+        <a href="#skills" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 hover:text-cyan-300 transition-colors scroll-indicator hidden sm:block" aria-label="Scroll down">
             <i class="fa-solid fa-chevron-down text-xl animate-bounce"></i>
         </a>
     </div>

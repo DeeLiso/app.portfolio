@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -60,7 +60,7 @@
     <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] z-[60] pointer-events-none" style="width:0%; background:linear-gradient(90deg,#22d3ee,#a855f7,#f472b6); box-shadow:0 0 12px rgba(34,211,238,.6);"></div>
 
     <!-- Ambient background orbs -->
-    <div class="fixed inset-0 -z-10 pointer-events-none" aria-hidden="true">
+    <div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden" aria-hidden="true">
         <div class="orb orb-cyan"></div>
         <div class="orb orb-violet"></div>
         <div class="orb orb-pink"></div>
@@ -154,7 +154,7 @@
             </span>
         </div>
 
-        <h1 class="mt-8 font-display font-bold leading-tight text-5xl sm:text-6xl lg:text-7xl text-white" data-aos="fade-up" data-aos-delay="200">
+        <h1 class="mt-8 font-display font-bold leading-tight text-3xl sm:text-5xl lg:text-7xl text-white" data-aos="fade-up" data-aos-delay="200">
             Hi, I'm
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-pink-400 hero-gradient">
                 Aung Pyae Phyoe            </span>
@@ -192,7 +192,7 @@
                     </div>
 
         <!-- Scroll indicator -->
-        <a href="#skills" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 hover:text-cyan-300 transition-colors scroll-indicator" aria-label="Scroll down">
+        <a href="#skills" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 hover:text-cyan-300 transition-colors scroll-indicator hidden sm:block" aria-label="Scroll down">
             <i class="fa-solid fa-chevron-down text-xl animate-bounce"></i>
         </a>
     </div>
@@ -287,33 +287,33 @@
             </div>
 
             <!-- Floating badge cloud -->
-            <div class="relative flex items-center justify-center min-h-[380px]" data-aos="fade-left">
-                <div class="glass rounded-3xl p-6 w-full min-h-[380px] flex flex-col items-center justify-center">
+            <div class="relative flex items-center justify-center min-h-[280px] sm:min-h-[380px]" data-aos="fade-left">
+                <div class="glass rounded-3xl p-6 w-full min-h-[280px] sm:min-h-[380px] flex flex-col items-center justify-center overflow-hidden">
                     <div class="text-center mb-6">
                         <i class="fa-solid fa-layer-group text-3xl text-cyan-400"></i>
                         <h3 class="font-display text-lg font-semibold text-white mt-3">Floating Tech Stack</h3>
                         <p class="text-xs text-slate-500 mt-1">Badges drift & spin on hover</p>
                     </div>
 
-                    <div class="badge-cloud flex flex-wrap justify-center gap-4">
+                    <div class="badge-cloud flex flex-wrap justify-center gap-3 sm:gap-4 overflow-hidden">
                                                     <span class="badge glass px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2"
-                                  style="--delay: 6s; --x: 22px;">
+                                  style="--delay: 0s; --x: -9px;">
                                 <i class="fa-brands fa-html5 text-cyan-300"></i>
                                 HTML                            </span>
                                                     <span class="badge glass px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2"
-                                  style="--delay: 4s; --x: 21px;">
+                                  style="--delay: 3s; --x: -16px;">
                                 <i class="fa-solid fa-wind text-cyan-300"></i>
                                 Tailwind CSS                            </span>
                                                     <span class="badge glass px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2"
-                                  style="--delay: 6s; --x: 12px;">
+                                  style="--delay: 5s; --x: -26px;">
                                 <i class="fa-brands fa-js text-cyan-300"></i>
                                 JavaScript                            </span>
                                                     <span class="badge glass px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2"
-                                  style="--delay: 7s; --x: 23px;">
+                                  style="--delay: 6s; --x: -29px;">
                                 <i class="fa-brands fa-php text-cyan-300"></i>
                                 PHP                            </span>
                                                     <span class="badge glass px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2"
-                                  style="--delay: 8s; --x: -22px;">
+                                  style="--delay: 6s; --x: 0px;">
                                 <i class="fa-brands fa-python text-cyan-300"></i>
                                 Python                            </span>
                                                 <span class="badge glass px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2"
@@ -349,7 +349,7 @@
             </p>
         </div>
 
-        <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
                             <article data-aos="fade-up" data-aos-delay="0"
                          class="tilt-card group relative rounded-3xl overflow-hidden glass project-card featured">
 
@@ -670,7 +670,7 @@
             <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
         </div>
 
-        <div class="mt-14 grid lg:grid-cols-2 gap-10 items-start">
+        <div class="mt-14 grid lg:grid-cols-2 gap-8 lg:gap-10 items-start">
 
             <!-- Info panel -->
             <div class="glass rounded-3xl p-8" data-aos="fade-right">
@@ -687,7 +687,7 @@
                         </span>
                         <div>
                             <p class="text-xs text-slate-500 uppercase tracking-wider">Email</p>
-                            <a href="mailto:tmaxoffice12@gmail.com" class="text-sm text-slate-200 hover:text-cyan-300 transition-colors">
+                            <a href="mailto:tmaxoffice12@gmail.com" class="text-sm text-slate-200 hover:text-cyan-300 transition-colors break-all">
                                 tmaxoffice12@gmail.com                            </a>
                         </div>
                     </li>
@@ -795,10 +795,10 @@
     </div>
 
     <!-- Live Demo preview modal -->
-    <div id="demo-modal" class="fixed inset-0 z-[70] hidden items-center justify-center p-4" role="dialog" aria-modal="true">
+    <div id="demo-modal" class="fixed inset-0 z-[70] hidden items-center justify-center p-2 sm:p-4" role="dialog" aria-modal="true">
         <div id="demo-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
         <div class="relative w-full max-w-5xl h-[85vh] glass rounded-2xl overflow-hidden flex flex-col">
-            <div class="flex items-center justify-between gap-3 px-4 py-3 border-b border-white/10">
+            <div class="flex items-center justify-between gap-2 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 border-b border-white/10">
                 <div class="flex items-center gap-2.5 min-w-0">
                     <i class="fa-solid fa-globe text-cyan-400"></i>
                     <span id="demo-title" class="font-display font-semibold text-white text-sm truncate">Project</span>
@@ -809,8 +809,8 @@
                         <i class="fa-solid fa-rotate"></i>
                     </button>
                     <a id="demo-open" href="#" target="_blank" rel="noopener"
-                       class="btn-glow px-4 py-2 rounded-full text-xs font-semibold">
-                        <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>Visit Site
+                       class="btn-glow px-3 sm:px-4 py-2 rounded-full text-xs font-semibold">
+                        <i class="fa-solid fa-arrow-up-right-from-square sm:mr-1"></i><span class="hidden sm:inline">Visit Site</span>
                     </a>
                     <button id="demo-close" title="Close" aria-label="Close"
                             class="w-9 h-9 rounded-full glass flex items-center justify-center text-slate-300 hover:text-red-400 transition-colors">
@@ -843,19 +843,6 @@
     <script src="assets/js/anti-copy.js"></script>
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
-    <script>
-    (function () {
-        var f = document.querySelector('#contact form');
-        if (!f) return;
-        f.addEventListener('submit', function (e) {
-            e.preventDefault();
-            var box = document.createElement('div');
-            box.className = 'rounded-xl border border-cyan-500/30 bg-cyan-500/10 p-4 mb-6 text-sm text-cyan-300';
-            box.innerHTML = '<i class="fa-solid fa-circle-info mr-2"></i>This static preview can\'t send messages. Email me at <a class="underline" href="mailto:tmaxoffice12@gmail.com">tmaxoffice12@gmail.com</a>.';
-            f.parentNode.insertBefore(box, f.firstChild);
-            box.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        });
-    })();
-    </script>
 </body>
 </html>
+

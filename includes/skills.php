@@ -36,15 +36,15 @@
             </div>
 
             <!-- Floating badge cloud -->
-            <div class="relative flex items-center justify-center min-h-[380px]" data-aos="fade-left">
-                <div class="glass rounded-3xl p-6 w-full min-h-[380px] flex flex-col items-center justify-center">
+            <div class="relative flex items-center justify-center min-h-[280px] sm:min-h-[380px]" data-aos="fade-left">
+                <div class="glass rounded-3xl p-6 w-full min-h-[280px] sm:min-h-[380px] flex flex-col items-center justify-center overflow-hidden">
                     <div class="text-center mb-6">
                         <i class="fa-solid fa-layer-group text-3xl text-cyan-400"></i>
                         <h3 class="font-display text-lg font-semibold text-white mt-3">Floating Tech Stack</h3>
                         <p class="text-xs text-slate-500 mt-1">Badges drift & spin on hover</p>
                     </div>
 
-                    <div class="badge-cloud flex flex-wrap justify-center gap-4">
+                    <div class="badge-cloud flex flex-wrap justify-center gap-3 sm:gap-4 overflow-hidden">
                         <?php foreach ($skills as $skill): ?>
                             <span class="badge glass px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2"
                                   style="--delay: <?= rand(0, 8) ?>s; --x: <?= rand(-30, 30) ?>px;">
