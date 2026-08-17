@@ -43,13 +43,38 @@ $nav = [
                     },
                     colors: {
                         base: '#070710',
-                        neon: '#22d3ee',
-                        neon2: '#a855f7',
-                        neon3: '#f472b6',
+                        neon: '#38bdf8',
+                        neon2: '#facc15',
+                        neon3: '#ef4444',
+                        cyan: {
+                            50:'#f0f9ff',100:'#e0f2fe',200:'#bae6fd',300:'#7dd3fc',
+                            400:'#38bdf8',500:'#0ea5e9',600:'#0284c7',700:'#0369a1',
+                            800:'#075985',900:'#0c4a6e',950:'#082f49'
+                        },
+                        violet: {
+                            50:'#fffbeb',100:'#fef3c7',200:'#fde68a',300:'#fcd34d',
+                            400:'#facc15',500:'#eab308',600:'#ca8a04',700:'#a16207',
+                            800:'#854d0e',900:'#713f12',950:'#422006'
+                        },
+                        fuchsia: {
+                            50:'#fffbeb',100:'#fef3c7',200:'#fde68a',300:'#fcd34d',
+                            400:'#facc15',500:'#eab308',600:'#ca8a04',700:'#a16207',
+                            800:'#854d0e',900:'#713f12',950:'#422006'
+                        },
+                        pink: {
+                            50:'#fef2f2',100:'#fee2e2',200:'#fecaca',300:'#fca5a5',
+                            400:'#f87171',500:'#ef4444',600:'#dc2626',700:'#b91c1c',
+                            800:'#991b1b',900:'#7f1d1d',950:'#450a0a'
+                        },
+                        amber: {
+                            50:'#fffbeb',100:'#fef3c7',200:'#fde68a',300:'#fcd34d',
+                            400:'#facc15',500:'#eab308',600:'#ca8a04',700:'#a16207',
+                            800:'#854d0e',900:'#713f12',950:'#422006'
+                        }
                     },
                     boxShadow: {
-                        'neon': '0 0 40px rgba(34,211,238,.35)',
-                        'neon-violet': '0 0 40px rgba(168,85,247,.35)',
+                        'neon': '0 0 40px rgba(56,189,248,.35)',
+                        'neon-violet': '0 0 40px rgba(250,204,21,.35)',
                     },
                 }
             }
@@ -66,7 +91,7 @@ $nav = [
 <body class="bg-base text-slate-200 font-body overflow-x-hidden">
 
     <!-- Scroll progress bar -->
-    <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] z-[60] pointer-events-none" style="width:0%; background:linear-gradient(90deg,#22d3ee,#a855f7,#f472b6); box-shadow:0 0 12px rgba(34,211,238,.6);"></div>
+    <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] z-[60] pointer-events-none" style="width:0%; background:linear-gradient(90deg,#38bdf8,#facc15,#ef4444); box-shadow:0 0 12px rgba(56,189,248,.6);"></div>
 
     <!-- Ambient background orbs -->
     <div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden" aria-hidden="true">

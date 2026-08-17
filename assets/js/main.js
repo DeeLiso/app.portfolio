@@ -94,7 +94,7 @@
     if (canvas && !prefersReduced) {
         const ctx = canvas.getContext('2d');
         let W, H, particles = [];
-        const COLORS = ['#22d3ee', '#a855f7', '#f472b6'];
+        const COLORS = ['#38bdf8', '#facc15', '#ef4444'];
 
         const resize = () => {
             W = canvas.width = canvas.offsetWidth;
