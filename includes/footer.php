@@ -18,7 +18,7 @@
     </footer>
 
     <!-- Floating feedback card (slides in from the side) -->
-    <div id="float-card" class="float-card fixed bottom-6 right-6 z-40 max-w-sm w-[calc(100vw-3rem)] sm:w-80 glass rounded-2xl p-5">
+    <div id="float-card" class="float-card fixed bottom-2 right-2 sm:bottom-6 sm:right-6 z-40 max-w-xs sm:max-w-sm w-[calc(100vw-1rem)] sm:w-80 glass rounded-2xl p-4 sm:p-5">
         <button id="float-close" aria-label="Dismiss"
                 class="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-white transition-colors">
             <i class="fa-solid fa-xmark"></i>

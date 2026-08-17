@@ -419,14 +419,13 @@ html[data-theme="light"] ::-moz-selection { color: #0f172a; }
     ::-webkit-scrollbar { width: 4px; }
 
     .float-card {
-        transform: translateY(calc(100% + 1.5rem));
-        right: 1rem;
-        bottom: 1rem;
-        max-width: 100%;
-        width: calc(100vw - 2rem);
+        transform: scale(0.85) !important;
+        opacity: 0 !important;
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease !important;
     }
     .float-card.show {
-        transform: translateY(0);
+        transform: scale(1) !important;
+        opacity: 1 !important;
     }
 }
 
